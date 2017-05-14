@@ -32,8 +32,9 @@ extern "C" _declspec(dllexport) unsigned long PrintInfo(void* param);
 extern "C" _declspec(dllexport) unsigned long GetInformation(void* param);
 
 unsigned long PrintInfo(void* param) {
-	 if(!param)
-        return false;
+	if (!param) {
+		return false;
+	}
         
     // param currently points to the location in our memory where PrintInfo_t is written. A simple cast will work.
 	// Now, we can create our own copy of this memory to use later in this process, since as soon as the procedure returns,

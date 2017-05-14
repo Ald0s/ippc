@@ -5,6 +5,9 @@ The tool is also able to get the result from the call, this can be cast into a m
 
 By Alden Viljoen
 https://github.com/ald0s
+
+== CIPPC Summary ==
+Exposes the low level functionality used in interacting with the WinAPI directly, also provides a lot of functionality for reading/writing managed and unmanaged memory.
 */
 
 using System;
@@ -152,6 +155,72 @@ namespace IPPC {
                 ReportException(e);
                 return null;
             }
+        }
+
+        /// <summary>
+        /// Reads an array of an unknown type.
+        /// The programmer may specify the size of the target data.
+        /// </summary>
+        /// <param name="ptrHandle">A handle to the target process.</param>
+        /// <param name="ptrBase">A pointer to the base of the memory location.</param>
+        /// <param name="count">The number of elements to read.</param>
+        /// <param name="sz">The size of each element.</param>
+        /// <returns>An array of arrays containing the target data.</returns>
+        public byte[][] ReadArrayMemory(IntPtr ptrHandle, IntPtr ptrBase, int count, int sz) {
+            try {
+                byte[][] result = new byte[count][];
+                for(int i = 0; i < count; i++) {
+                    IntPtr ptrTarget = (ptrBase + (i * sz));
+                    result[i] = new byte[sz];
+
+                    IntPtr ptrNumBytesRead = IntPtr.Zero;
+                    if(!ReadProcessMemory(ptrHandle, ptrTarget, result[i], sz, out ptrNumBytesRead)) {
+                        WriteError("Failed to read process memory.");
+                        return null;
+                    }
+                }
+
+                return result;
+            }catch(Exception e) {
+                ReportException(e);
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// Reads an array of unsigned integers from memory.
+        /// </summary>
+        /// <param name="ptrHandle">A handle to the target process.</param>
+        /// <param name="ptrBase">A pointer to the base of the memory location.</param>
+        /// <param name="iNum">The number of integers to read.</param>
+        /// <returns>An array of unsigned integers read from the target memory.</returns>
+        public uint[] ReadUIntArray(IntPtr ptrHandle, IntPtr ptrBase, int iNum) {
+            uint[] result = new uint[iNum];
+            byte[][] uints = ReadArrayMemory(ptrHandle, ptrBase, iNum, sizeof(uint));
+
+            for(int i = 0; i < iNum; i++) {
+                result[i] = BitConverter.ToUInt32(uints[i], 0);
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// Reads an array of 16 bit integers from memory.
+        /// </summary>
+        /// <param name="ptrHandle">A handle to the target process.</param>
+        /// <param name="ptrBase">A pointer to the base of the memory location.</param>
+        /// <param name="iNum">The number of integers to read.</param>
+        /// <returns>An array of integers read from the target memory.</returns>
+        public short[] ReadShortArray(IntPtr ptrHandle, IntPtr ptrBase, int iNum) {
+            short[] result = new short[iNum];
+            byte[][] shorts = ReadArrayMemory(ptrHandle, ptrBase, iNum, sizeof(short));
+
+            for (int i = 0; i < iNum; i++) {
+                result[i] = BitConverter.ToInt16(shorts[i], 0);
+            }
+
+            return result;
         }
 
         /// <summary>

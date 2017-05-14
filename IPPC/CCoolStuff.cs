@@ -5,6 +5,13 @@ The tool is also able to get the result from the call, this can be cast into a m
 
 By Alden Viljoen
 https://github.com/ald0s
+
+== CCoolStuff Summary ==
+Exposes the two main points of this demonstration.
+PrintInfo - calls the exported 'PrintInfo' function in the 'ippp_example' project.
+GetInformation - calls the exported 'GetInformation' function in the 'ippp_example' project.
+
+I think this is pretty cool. So I called it CoolStuff.
 */
 
 using System;
