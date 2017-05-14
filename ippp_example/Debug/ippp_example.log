@@ -1,0 +1,7 @@
+﻿  ippp_example.cpp
+c:\programming\c#\ippc\ippp_example\ippp_example.cpp(35): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\string.h(119): note: see declaration of 'strcpy'
+c:\programming\c#\ippc\ippp_example\ippp_example.cpp(58): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\string.h(119): note: see declaration of 'strcpy'
+  ippp_example.vcxproj -> C:\Programming\C#\IPPC\Debug\ippp_example.exe
+  ippp_example.vcxproj -> C:\Programming\C#\IPPC\Debug\ippp_example.pdb (Partial PDB)

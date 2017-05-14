@@ -1,0 +1,6 @@
+C:\Programming\C#\IPPC\IPPC\obj\x86\Release\IPPC.csprojResolveAssemblyReference.cache
+C:\Programming\C#\IPPC\IPPC\bin\x86\Release\IPPC.exe.config
+C:\Programming\C#\IPPC\IPPC\bin\x86\Release\IPPC.exe
+C:\Programming\C#\IPPC\IPPC\bin\x86\Release\IPPC.pdb
+C:\Programming\C#\IPPC\IPPC\obj\x86\Release\IPPC.exe
+C:\Programming\C#\IPPC\IPPC\obj\x86\Release\IPPC.pdb
