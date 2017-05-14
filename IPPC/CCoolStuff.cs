@@ -77,8 +77,6 @@ namespace IPPC {
             result = (GetInformation_t)ippc.ReadStruct(info.ptrHandle, new IntPtr(uiResult), result);
 
             // Our string is currently a pointer! So we must read this now.
-            // If the string's null terminating character is not guaranteed, write an overload that takes the string length from this structure too,
-            // and read that many bytes.
             string strOutput = ippc.ReadString(info.ptrHandle, result.ptrString);
 
             // result will now contain our information. Let's take a peek!
